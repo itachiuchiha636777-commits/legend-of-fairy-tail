@@ -1,0 +1,2051 @@
+* {
+  margin: 0;
+
+  padding: 0;
+
+  box-sizing: border-box;
+}
+/* ==========================================================
+   🚀 DYNAMIC GPU FORCE LOCK FOR APK FLICKER & BLINK FIX
+
+   ========================================================== */
+/*
+#game,
+#stageContainer,
+.fighter,
+.projectile,
+.dash-vfx,
+.move-cutin-card {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  will-change: transform, background-position, width, height !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  perspective: 1000 !important;
+  -webkit-perspective: 1000 !important;
+}
+
+
+.fighter,
+.projectile,
+.move-cutin-card img {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+#game,
+#stageContainer,
+.fighter,
+.projectile {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}*/
+/*
+#game,
+#stageContainer {
+  transform-origin: 50% 100% !important;
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+.fighter,
+.projectile,
+.dash-vfx,
+.move-cutin-card {
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  will-change: transform, background-position;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000;
+  -webkit-perspective: 1000
+
+.fighter,
+.projectile,
+.move-cutin-card img {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+
+
+/* ==========================================================
+         🚀 ANTI-FLICKER GPU FORCE LAYER FOR MOBILE APK (PERMANENT)
+   
+         ========================================================== */
+/*      
+#game,
+#stageContainer,
+.fighter,
+.projectile,
+.dash-vfx,
+.move-cutin-card {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  will-change: transform, background-position !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  perspective: 1000 !important;
+  -webkit-perspective: 1000 !important;
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
+}
+
+img,
+.fighter,
+.projectile,
+.move-cutin-card img {
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: pixelated !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+}*/
+
+/* ==========================================================
+           🚀 ANTI-FLICKER GPU FORCE LAYER FOR MOBILE APK (PERMANENT)
+              ========================================================== */
+#game,
+#stageContainer {
+  transform-origin: 50% 100% !important;
+  will-change: transform !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  /*perspective: 1000 !important;
+  -webkit-perspective: 1000 !important;
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;*/
+  /* 👈 Buttons aur BG ko Sukuna arrow frame se alag karega */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+#mobile-controls,
+.t-btn,
+.round-btn,
+#joystick-container {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  isolation: isolate !important; /* 👈 Buttons aur BG ko Sukuna arrow frame se alag karke blink rokega */
+}
+.fighter,
+.projectile,
+.dash-vfx,
+.move-cutin-card {
+  transform: translate3d(0, 0, 0) !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  will-change: transform, background-position !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  /* transform-style: preserve-3d !important;*/
+  transform-style: flat !important;
+  -webkit-transform-style: flat !important;
+  contain: paint content !important;
+}
+
+/* Spritesheet loading layer lag drop solution */
+img,
+.fighter,
+.projectile,
+.move-cutin-card img {
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: pixelated !important;
+  /* -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;*/
+}
+
+body {
+  overflow: hidden;
+
+  background: #000;
+
+  font-family: Arial;
+
+  touch-action: none;
+}
+
+#game {
+  width: 100vw;
+
+  height: 100vh;
+
+  aspect-ratio: 9 / 16;
+
+  max-width: 500px;
+
+  margin: auto;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+/* ==========================================
+
+       PARALLAX BACKGROUND
+
+          ========================================== */
+
+#sky,
+#mountains,
+#trees {
+  position: absolute;
+
+  width: 200%;
+
+  height: 100%;
+
+  left: 0;
+
+  top: 0;
+
+  background-repeat: repeat-x;
+
+  pointer-events: none;
+}
+
+#sky {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  bottom: -20px;
+  background-image: url("assets/sky.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+/*
+#sky {
+background-image: url("assets/sky.png");
+
+background-size: cover;
+
+background-position: center;
+
+z-index: 1;
+}
+/*
+#mountains {
+background-image: url("assets/mountains.jpg");
+
+background-size: cover;
+background-position: bottom;
+
+animation: mountainMove 20s linear infinite;
+
+z-index: 2;
+}
+*/
+#mountains {
+  position: absolute;
+  left: 0;
+  top: auto;
+  bottom: 80px; /* 👈 1. Top 0 rakho taaki photo beech se na kate */
+  width: 200%;
+  height: 100%;
+  background-image: url("assets/mountains.jpg"); /* Ya nayi photo */
+  background-size: auto 100%;
+  background-position: center bottom 10px; /* 👈 🔥 ASLI FIX: Image 50px neeche baith jayegi bina gayab hue! */
+  animation: mountainMove 20s linear infinite;
+  z-index: 2; /* 👈 2. Aasmaan ke aage aur Goku/Luffy ke peechhe */
+}
+
+#trees {
+  top: auto;
+  bottom: -30px;
+  background-image: url("assets/trees.jpg");
+  background-size: contain;
+  background-position: bottom;
+
+  animation: treesMove 8s linear infinite;
+
+  z-index: 3;
+}
+
+@keyframes mountainMove {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes treesMove {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+#ground {
+  position: absolute;
+
+  left: 0;
+
+  bottom: 0;
+
+  width: 100%;
+
+  height: 40px;
+
+  z-index: 4;
+}
+
+/* ==========================================
+
+             FIGHTERS
+
+                ========================================== */
+
+.fighter {
+  position: absolute;
+
+  bottom: 40px;
+
+  background-repeat: no-repeat;
+
+  image-rendering: pixelated;
+
+  z-index: 5;
+
+  transform-origin: bottom center;
+}
+/* PROJECTILE (Ki-Blast) */
+
+.projectile {
+  position: absolute;
+
+  background-repeat: no-repeat;
+
+  image-rendering: pixelated;
+
+  z-index: 6; /* Player ke thoda upar */
+
+  transform-origin: bottom center;
+}
+/* ==========================================
+
+                   UI & HEALTH BARS
+
+                      ========================================== */
+
+#healthContainer {
+  position: absolute;
+
+  top: 20px;
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  padding: 0 20px;
+
+  z-index: 15;
+
+  pointer-events: none;
+}
+
+.health-box {
+  position: relative;
+}
+
+.p1-health .healthFrame {
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  z-index: 2;
+
+  left: -40px;
+
+  top: -10px;
+  object-fit: contain;
+}
+.p1-health {
+  width: 390px; /* Deku ki frame ki lambai */
+  height: 140px; /* Deku ki frame ki unchai */
+}
+.p2-health {
+  width: 920px; /* 🔥 JADOO: Goku ka dabba zyada lamba kar diya! */
+  height: 120px; /* Goku ki frame ki unchai */
+}
+.p2-health .healthFrame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  /* 🔥 POGISTION SETTING (Goku): */
+  top: -40px; /* Isey bhi UPAR khiska kar green patti ke peechhe lagao */
+  right: -20px; /* Goku right side hai, toh isko Right se set karo */
+  left: auto; /* Isko auto rakhna zaroori hai */
+  object-fit: contain;
+}
+
+.healthFill {
+  position: absolute;
+
+  top: 25px;
+
+  left: 45px;
+
+  height: 12px;
+
+  background: linear-gradient(to right, #5bdacf, #19e3cbdc);
+
+  border-radius: 10px;
+
+  z-index: 1;
+
+  transition: width 0.2s linear;
+
+  width: 140px;
+}
+
+.enemy-fill {
+  background: linear-gradient(to left, #ff3366, #b3002d);
+
+  right: 45px;
+
+  left: auto;
+}
+
+/* ==========================================
+
+                         SCREENS & MENUS
+
+                            ========================================== */
+
+#startScreen,
+#gameOverScreen {
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-direction: column;
+
+  z-index: 20;
+}
+
+#gameOverScreen {
+  display: none;
+
+  background: rgba(0, 0, 0, 0.6);
+}
+
+#startBtn {
+  width: 260px;
+
+  cursor: pointer;
+}
+
+#retryBtn {
+  width: 220px;
+}
+
+#gameOverImg {
+  width: 320px;
+}
+
+#score {
+  font-size: 35px;
+
+  color: white;
+
+  z-index: 20;
+}
+.debug-hurtbox {
+  position: absolute;
+
+  border: 2px solid blue;
+
+  background-color: rgba(0, 0, 255, 0.2);
+
+  pointer-events: none;
+
+  z-index: 10;
+
+  display: none;
+}
+
+.debug-hitbox {
+  position: absolute;
+
+  border: 2px solid red;
+
+  background-color: rgba(255, 0, 0, 0.4);
+
+  pointer-events: none;
+
+  z-index: 11;
+
+  display: none;
+}
+
+/* ==========================================
+
+                               MOBILE RESPONSIVENESS
+
+                                  ========================================== */
+
+@media (max-width: 950px) {
+  #healthContainer {
+    padding: 0 10px;
+  }
+  .p1-health .healthFrame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    /* 🔥 POGISTION SETTING (Deku): */
+    top: -70px; /* Minus (-) lagane se frame UPAR khiskega green patti ke paas */
+    left: -90px; /* Andar-bahar khiskane ke liye */
+    object-fit: contain;
+  }
+
+  .health-box {
+    /* Chota health box for mobile */
+    width: 390px;
+    height: 160px;
+  }
+  .p2-health-box {
+    width: 520px; /* 🔥 JADOO: Goku ka dabba zyada lamba kar diya! */
+    height: 100px; /* Goku ki frame ki unchai */
+  }
+  .p2-health .healthFrame {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    /* 🔥 POGISTION SETTING (Goku): */
+    top: -65px; /* Isey bhi UPAR khiska kar green patti ke peechhe lagao */
+    right: -90px; /* Goku right side hai, toh isko Right se set karo */
+    left: auto; /* Isko auto rakhna zaroori hai */
+    object-fit: contain;
+  }
+
+  .healthFill {
+    top: 10px;
+
+    left: 50px;
+
+    height: 15px;
+
+    width: 95px; /* Scaled down fill */
+  }
+
+  .enemy-fill {
+    right: 32px;
+    width: 95px;
+    height: 15px;
+    top: 7px;
+    left: auto;
+  }
+}
+/* ==========================================
+                                     MOBILE TOUCH CONTROLS DESIGN
+                                           ========================================== */
+#mobile-controls {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Screen touch block na ho */
+  z-index: 1000;
+}
+
+.t-btn {
+  pointer-events: auto;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  font-weight: bold;
+  user-select: none;
+}
+.t-btn:active {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+/* Top L1/L2/R1/R2 Layout */
+.top-l1 {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 8px 15px;
+}
+.top-l2 {
+  position: absolute;
+  top: 60px;
+  left: 10px;
+  padding: 8px 15px;
+}
+.top-r1 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 15px;
+}
+.top-r2 {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  padding: 8px 15px;
+}
+
+/* Action Buttons Right mein */
+.action-btns {
+  position: absolute;
+  bottom: 60px;
+  right: 20px;
+  display: grid;
+  grid-template-columns: 60px 60px;
+  gap: 10px;
+}
+.round-btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 11px;
+  pointer-events: auto;
+}
+
+/* Free Fire Style Dynamic Joystick Left mein */
+#joystick-container {
+  position: absolute;
+  bottom: 50px;
+  left: 40px;
+  width: 110px;
+  height: 110px;
+  pointer-events: auto;
+  user-select: none;
+}
+#joystick-base {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#joystick-stick {
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 2px solid white;
+  border-radius: 50%;
+  position: absolute;
+  touch-action: none;
+}
+/* Body aur HTML se saara extra space hata do  */
+/* ==========================================
+   FULLSCREEN EDGE-TO-EDGE LAYOUT
+         ========================================== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden; /* Scrollbars aur extra space hide karega */
+  background-color: black;
+  touch-action: none;
+}
+
+#game {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: none !important; /* Koi limit nahi */
+  /*height: var(--app-height, 100vh) !important;*/
+  /* max-height: var(--app-height, 100vh) !important;*/
+  max-height: none !important;
+
+  /* Koi limit nahi 
+  height: var(--app-height, 100vh) !important;*/
+  /* max-height: var(--app-height, 100vh) !important;*/
+
+  position: relative;
+  overflow: hidden;
+
+  /* Background image ko poori screen par stretch karne ke liye */
+  background-size: auto 100% !important;
+  background-position: center bottom;
+  background-repeat: repeat-x !important;
+}
+
+/* Safe Area (Notch) padding controls ke liye taaki buttons screen se bahar na jayein */
+#mobile-controls {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Fullscreen Button ki styling */
+.top-center {
+  position: absolute !important;
+  top: 10px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important; /* Ekdum center mein set karega */
+  padding: 8px 20px !important;
+  border-radius: 20px !important;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ) !important; /* Thoda dark taaki alag dikhe */
+  color: white !important;
+  z-index: 3000 !important;
+}
+/* ========================================= */
+/* COMBO HIT TEXT STYLING */
+/* ========================================= */
+.combo-text {
+  position: absolute;
+  /* Health bar ke thoda neeche */
+  font-family: Impact, sans-serif;
+  font-size: 35px;
+  color: #ffd700; /* Bright Yellow */
+  text-shadow: 3px 3px 0px red, -3px -3px 0px red, 3px -3px 0px red,
+    -3px 3px 0px red, 5px 5px 10px black;
+  font-style: italic;
+  font-weight: bold;
+  opacity: 0; /* Shuru mein gayab rahega */
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 100;
+}
+.t7-combo-style {
+  left: 50px;
+  top: 15px !important;
+  font-size: 35px !important;
+  color: #a9a9a9 !important;
+  text-shadow: 2px 2px 0px #ffb2d0, -2px -2px 0px #00ffff, 0 0 15px #bf00ff,
+    0 0 25px #00e5ff, 3px 3px 6px #000000 !important;
+}
+
+/* 🌋 2. E7 COMBO: INFERNAL RUBY DEMON SUN (Right Top-Most: Top 15px) */
+.e7-combo-style {
+  right: 50px;
+  top: 15px !important;
+  font-size: 35px !important;
+  color: #c21e56 !important;
+  text-shadow: 2px 2px 0px #ff0055, -2px -2px 0px #ff3300, 0 0 16px #ff0055,
+    0 0 30px #ff4500, 3px 3px 6px #000000 !important;
+}
+
+.t4-combo-style {
+  left: 50px;
+  top: 99px !important;
+  font-size: 35px !important;
+  color: #ffffff !important;
+  text-shadow: 3px 3px 0px #ff007f,
+    /* 🩷 Cyberpunk Magenta Outline */ -2px -2px 0px #0044ff,
+    /* 🔵 Sapphire Blue Outline */ 0 0 18px #ff007f,
+    /* 🔮 Cosmic Glow */ 3px 3px 8px #000000 !important;
+}
+
+/* 🔥 RIGHT OP 3-COLOR MIX (Fiery Red + Electric Violet + Gold) */
+.e4-combo-style {
+  right: 50px;
+  top: 99px !important;
+  font-size: 35px !important;
+  color: #b57edc;
+  text-shadow: 2px 2px 0px paleturquoise, -2px -2px 0px #990066,
+    0 0 12px #ff2200, 3px 3px 6px #000000 !important;
+}
+
+#p1-combo {
+  left: 50px;
+
+  top: 141px !important;
+  font-size: 35px !important;
+  color: #ffd700 !important;
+  text-shadow: 3px 3px 0px red, -3px -3px 0px red, 3px 3px 0px red,
+    -3px 3px 0px red, 5px 5px 10px black !important;
+}
+/* Player 1 (Deku) ka left side fix */
+
+.t1-combo-style {
+  left: 50px;
+  top: 184px;
+  font-size: 35px !important;
+  color: #00ffff !important;
+  text-shadow: 2px 2px 0px blue, -2px -2px 0px blue, 3px 3px 10px black !important;
+}
+
+/* Jiren - Red (10px chota, 20px gap) */
+.t2-combo-style {
+  left: 50px;
+  top: 226px;
+  font-size: 35px !important;
+  color: #ff3333 !important;
+  text-shadow: 2px 2px 0px darkred, -2px -2px 0px darkred, 3px 3px 10px black !important;
+}
+.f1-combo-style {
+  right: 50px; /* Right side mein (Goku Black ke paas) */
+  top: 184px; /* Goku Black ke text ke theek neeche */
+  font-size: 35px !important; /* Jiren/SSB jitna chhota */
+  color: yellow !important; /* Purple */
+  text-shadow: 2px 2px 0px red, -2px -2px 0px red, 3px 3px 10px black !important; /* Dark Purple Outline */
+}
+/* 🔥 Sukuna - Pink Combo with Dark Pink Outline (Frieza ke neeche) */
+.s1-combo-style {
+  right: 50px; /* Right side (Enemies side) */
+  top: 226px; /* Frieza ke combo ke theek neeche */
+  font-size: 35px !important;
+  color: #ff66cc !important; /* 🩷 Bright Pink */
+  text-shadow: 2px 2px 0px red, -2px -2px 0px paleturquoise, 3px 3px 10px black !important; /* 🟣 Dark Pink Outline */
+}
+/* ⚡ SASUKE - CHIDORI ELECTRIC LIGHTNING & SUSANOO PURPLE */
+.sasuke-combo-style {
+  right: 50px; /* Right side par */
+  top: 268px; /* Sukuna (215px) ke theek neeche */
+  font-size: 35px !important;
+  color: #e2e8f0 !important; /* ⚡ Chidori Electric Cyan-Blue */
+  text-shadow: 2px 2px 0px #00f0ff, -2px -2px 0px #7928ca, 0 0 15px #00f0ff,
+    3px 3px 10px chartreuse !important;
+}
+/* 🖤 1. T5 COMBO: LIGHT BLACK / SMOKE TITANIUM (T4 ke upar: Top 50px) */
+.t5-combo-style {
+  left: 50px;
+  top: 57px !important;
+  font-size: 35px !important;
+  color: #583563 !important; /* Platinum Smoke Light */
+  text-shadow: 3px 3px 0px #111827,
+    /* Dark Obsidian Outline */ -2px -2px 0px #374151,
+    /* Charcoal Outline */ 0 0 16px rgba(255, 255, 255, 0.45),
+    /* Silver Smoke Aura */ 4px 4px 10px #000000 !important;
+}
+
+/* 👑 2. T6 COMBO: SUPER SAIYAN RADIANT GOLD (Itachi ke niche: Top 305px) */
+.t6-combo-style {
+  left: 50px;
+  top: 310px !important;
+  font-size: 35px !important;
+  color: #fff7cc !important; /* Divine Pure Radiant Light Gold */
+  text-shadow: 3px 3px 0px #b45309,
+    /* Deep Bronze Amber Outline */ -2px -2px 0px #f59e0b,
+    /* Golden Sun Outline */ 0 0 20px #ffd700,
+    /* Intense Gold Glow */ 0 0 35px #f59e0b, 3px 3px 10px #000000 !important;
+}
+
+/* 🧪 3. E5 COMBO: TOXIC ACID NEON LIME (E4 ke upar: Top 50px) */
+.e5-combo-style {
+  right: 50px;
+  top: 57px !important;
+  font-size: 35px !important;
+  color: #e4ff1a !important; /* Electric Neon Toxic Lime */
+  text-shadow: 3px 3px 0px #15803d,
+    /* Venom Dark Green Outline */ -2px -2px 0px #042f2e,
+    /* Biohazard Deep Dark */ 0 0 18px #22c55e,
+    /* Acid Energy Glow */ 0 0 32px #a3e635, 3px 3px 10px #000000 !important;
+}
+
+/* 🔥 4. E6 COMBO: BLAZING MAGMA LAVA FLAME (Sasuke ke niche: Top 305px) */
+.e6-combo-style {
+  right: 50px;
+  top: 310px !important;
+  font-size: 35px !important;
+  color: black !important; /* Molten Pearl White-Orange */
+  text-shadow: 3px 3px 0px #c2410c,
+    /* Volcanic Dark Orange Outline */ -2px -2px 0px #7c2d12,
+    /* Deep Molten Core */ 0 0 20px #ea580c,
+    /* Blazing Magma Radiance */ 0 0 35px #f97316, 4px 4px 10px #000000 !important;
+}
+/* 🔥 NAYA: Itachi - Mangekyou Sharingan Theme (Blood Red & Black) */
+.t3-combo-style {
+  left: 50px;
+  top: 268px; /* Jiren ke theek 20px neeche (215 + 30 font + 20 gap = 265) */
+  font-size: 35px !important;
+  color: springgreen !important; /* Ekdum Khuni Laal (Blood Red) */
+  text-shadow: 2px 2px 0px paleturquoise, -2px -2px 0px red, 4px 4px 15px black !important;
+}
+#p2-combo {
+  right: 50px;
+  top: 141px !important;
+  font-size: 35px !important;
+  color: #ffd700 !important;
+  text-shadow: 3px 3px 0px red, -3px -3px 0px red, 3px 3px 0px red,
+    -3px 3px 0px red, 5px 5px 10px black !important;
+}
+
+/* Enemy (Goku) ka right side fix */
+
+/* Jab naya hit padega toh bada hokar chhota hoga (Pop effect) */
+.pop-anim {
+  animation: popCombo 0.2s ease-out;
+}
+
+@keyframes popCombo {
+  0% {
+    transform: scale(1.6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* ==========================================
+   🔥 NAYA JADOO: 3 ANIME HEROES BACKGROUND
+      ========================================== */
+#bg-characters {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly; /* Teeno ko screen par barabar set karega */
+  align-items: flex-end; /* Neeche pahaadon ki taraf touch karega */
+  z-index: 3; /* 🔥 Sky ke aage aur Pahaadon (z-index: 2) ke peechhe! */
+  pointer-events: none;
+  isolation: isolate;
+  opacity: 1; /* 🔥 Halka transparent (dhundhla) taaki main fighting disturb na ho */
+}
+
+.bg-char {
+  height: 90%; /* Kitne bade dikhenge (Screen ka 90%) */
+  object-fit: contain;
+  mix-blend-mode: screen; /* 🔥 ASLI JADOO: Image ka Kaala (Black) rang hawa mein gayab! */
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+  opacity: 0.9;
+  /* Halka sa chamak (glow) */
+}
+#bg-lufy {
+  /* Luffy ki photo mein space zyada hai, isliye isko lagbhag double (1.8x) bada kiya */
+  transform: scale(2.5);
+}
+
+#bg-naruto {
+  /* Naruto ko thoda sa (1.3x) bada kiya taaki height Goku ke barabar lage */
+  transform: scale(1);
+  transform-origin: bottom center;
+}
+/* ==========================================
+   🔥 DASH VFX ANIMATION SETTINGS
+      ========================================== */
+.dash-vfx {
+  position: absolute;
+  width: 120px; /* Dhool kitni door tak udegii */
+  height: 80px; /* Dhool ki unchai */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  z-index: 4; /* 🔥 Player (5) ke theek peechhe rahega! */
+  display: none; /* Shuru mein gayab */
+  pointer-events: none;
+  opacity: 0;
+}
+/* ==========================================
+   🔥 OVERHEAD BARS FOR TEAMMATES (HP & EP)
+      ========================================== */
+.mini-bar-container {
+  position: absolute;
+  width: 60px;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid white;
+  border-radius: 2px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+.mini-hp-fill {
+  height: 50%;
+  background: #32cd32; /* Green HP */
+  width: 100%;
+  transition: width 0.1s;
+}
+.mini-ep-fill {
+  height: 50%;
+  background: #00ffff; /* Cyan EP */
+  width: 100%;
+  transition: width 0.1s;
+}
+/* ===================================
+     /* ==========================================
+        🖼️ JUMP FORCE MOVIE POSTER (LANDSCAPE ONLY)
+           ========================================== */
+#startScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  background-image: url("assets/bg.png"); /* 🌆 Aapki background photo */
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 1500;
+}
+
+/* 👥 Left & Right Teams Lineup */
+.poster-team {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  height: 90vh;
+  width: 36vw;
+  pointer-events: none;
+}
+
+/* Left Team Staggered Layout */
+.left-team {
+  justify-content: flex-start;
+}
+
+/* Right Team Staggered Layout */
+.right-team {
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+}
+
+/* 🥋 Full Height Character PNG Figures */
+.poster-char {
+  height: 85vh;
+  max-width: 18vw;
+  object-fit: contain;
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.9));
+  margin-right: -4vw; /* Poster ki tarah fighters ek dusre ke aage-peeche khade lagenge */
+  user-select: none;
+}
+
+.right-team .poster-char {
+  margin-right: 0;
+  margin-left: -4vw;
+}
+
+/* 🌟 Center Logo & Start Button */
+.poster-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 28vw;
+  height: 100vh;
+  padding-bottom: 5vh;
+  z-index: 20;
+}
+
+/* Center Logo */
+#posterLogo {
+  max-width: 260px;
+  max-height: 130px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.8));
+  margin-bottom: -150px;
+  animation: logoPulse 2.5s infinite alternate ease-in-out;
+}
+
+@keyframes logoPulse {
+  from {
+    transform: scale(1);
+    filter: drop-shadow(0 0 20px rgba(255, 100, 0, 0.8));
+  }
+  to {
+    transform: scale(1.04);
+    filter: drop-shadow(0 0 35px rgba(255, 215, 0, 1));
+  }
+}
+
+/* Original Start Button */
+#startBtn {
+  width: 220px;
+  max-width: 100%;
+  cursor: pointer;
+  filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+  transition: transform 0.1s ease;
+  user-select: none;
+}
+
+#startBtn:active {
+  transform: scale(0.92);
+}
+/* Kisi ek character ko scale karke bada/chota karna */
+.p1 {
+  position: relative;
+  z-index: 10;
+  transform: translateY(100px) scale(1.5);
+}
+.p3 {
+  position: relative;
+  z-index: 1;
+  transform: translateX(-200px) translateY(-100px) scale(2); /* 1.png ko 20% bada kar dega */
+}
+.p2 {
+  position: relative;
+  z-index: 2;
+  transform: translateX(-50px) translateY(40px) scale(1.5);
+}
+.p4 {
+  transform: translateX(300px) translateY(-40px) scale(1.6); /* 7.png ko 15% chota kar dega */
+}
+.p5 {
+  transform: translateX(-40px) translateY(30px) scale(1.6);
+}
+.p7 {
+  transform: translateY(80px) scale(1.5);
+}
+.p8 {
+  transform: translateY(120px) scale(1.6);
+}
+.p9 {
+  transform: translateY(65px) scale(1.6);
+}
+.p6 {
+  transform: translateY(32px) scale(2); /* 10.png ko 10% bada kar dega */
+}
+.p10 {
+  transform: translateY(35px) scale(2);
+}
+/* ==========================================
+   🎮 JUMP FORCE CHARACTER SELECT SCREEN (BG2)
+      ========================================== */
+#selectScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  background-image: url("assets/bg2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  z-index: 2500;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Mobile Controls ko Select Screen ke upar dikhana */
+#mobile-controls {
+  z-index: 3000 !important;
+}
+
+/* 👥 Left & Right Team Slots */
+.team-panel {
+  width: 16vw;
+  height: 60vh;
+  margin-top: -10px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.25
+  ); /* 👈 Gamepad Button Style Transparent */
+  border: 2px solid rgba(255, 255, 255, 0.5); /* 👈 Gamepad Button Border */
+  border-radius: 16px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: none !important;
+}
+
+.panel-header {
+  font-family: Impact, sans-serif;
+  font-size: 16px;
+  color: #ffd700;
+  text-align: center;
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.4);
+  padding-bottom: 4px;
+}
+
+.slots-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  overflow-x: auto;
+  flex: 1;
+}
+
+.slot-item {
+  height: 38px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  gap: 3px;
+  color: black;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap; /* 👈 Naam kabhi tutega nahi */
+}
+
+.slot-item.empty {
+  color: rgba(255, 255, 255, 0.4);
+  justify-content: center;
+  font-style: italic;
+  font-size: 11px;
+}
+
+.slot-item img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ffd700;
+}
+
+/* 🌟 Center Big Character Preview */
+.center-preview {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+#bigCharPreview {
+  height: 60vh;
+  max-width: 45vw;
+  object-fit: contain;
+  filter: drop-shadow(0 0 25px rgba(255, 0, 0, 0.6))
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  animation: floatChar 3s infinite ease-in-out alternate;
+}
+
+@keyframes floatChar {
+  0% {
+    transform: translateY(0px) scale(1.2);
+  }
+  100% {
+    transform: translateY(-8px) scale(1.2);
+  }
+}
+
+.preview-name {
+  position: relative !important; /* 👈 Z-Index active karne ke liye zaroori hai */
+  z-index: 50 !important;
+  font-family: Impact, sans-serif;
+  font-size: 32px;
+  color: #fff;
+  text-shadow: 2px 2px 0 #ff0033, -2px -2px 0 #000, 0 0 15px #ff0033;
+  margin-top: -55px;
+  letter-spacing: 2px;
+}
+
+/* 🃏 Bottom 7 Cards + Glow */
+.select-bottom {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 20;
+  box-sizing: border-box;
+}
+
+.cards-row {
+  display: flex;
+  justify-content: space-between; /* 👈 Ek kinare se doosre kinare tak barabar faila diya */
+  align-items: center;
+  width: 100%;
+  background: #ff00004d; /* 👈 Gamepad Button Style Transparent */
+  border: 2px solid red; /* 👈 Gamepad Button Border */
+  border-radius: 16px;
+  padding: 2px 6%;
+  gap: 2px;
+  box-sizing: border-box;
+  backdrop-filter: none;
+}
+
+.roster-card {
+  flex: 1; /* 👈 Sabhi 7 cards screen me barabar bade stretch honge */
+  height: 90px; /* 👈 80px se bada karke 90px kiya */
+  max-width: 13.5vw;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.25);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.roster-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center; /* Face zoom */
+  transform: scale(1.15);
+}
+
+/* 🔥 RED GLOW ON ACTIVE CARD */
+.roster-card.active-card {
+  border: 2px solid #ff1a40 !important;
+  box-shadow: 0 0 18px #ff1a40, 0 0 30px rgba(255, 26, 64, 0.8),
+    inset 0 0 10px #ff1a40;
+  transform: translateY(-8px) scale(1.18);
+}
+.start-btn-wrap {
+  position: absolute;
+  top: -260px; /* 👈 Fullscreen button ke theek neeche TOP par */
+  left: 65%;
+  transform: translateX(-50%);
+  z-index: 50;
+}
+
+/* ⚔️ Start Fight Button */
+.fight-go-btn {
+  background: linear-gradient(135deg, #ff0033, #b30024);
+  color: #fff;
+  font-family: Impact, sans-serif;
+  font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 20px;
+  border: 2px solid #ffd700;
+  box-shadow: 0 0 15px rgba(255, 0, 50, 0.8);
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.fight-go-btn:active {
+  transform: scale(0.92);
+}
+/* ========================================= */
+/* 🎌 JAPANESE ANIME FINISHER (決着 K.O.)     */
+/* ========================================= */
+.ko-banner-wrap {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /*  z-index: 3500;*/
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* 💥 Fatal Hit Slam Animation */
+.ko-banner-wrap.active {
+  animation: koSlam 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 🎌 決着 (Ketchaku) Kanji - Fiery Blood Red & White */
+.ko-kanji {
+  font-family: "Hiragino Kaku Gothic Pro", "Yu Gothic", "Meiryo", sans-serif;
+  font-size: 90px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 15px;
+  text-shadow: 0 0 25px #ff0033, 0 0 50px #ff0033, 4px 4px 0px #000,
+    -4px -4px 0px #000, 4px -4px 0px #000, -4px 4px 0px #000;
+  transform: skewX(-12deg);
+}
+
+/* 🏆 Flaming Gold K.O. */
+.ko-sub {
+  font-family: Impact, sans-serif;
+  font-size: 50px;
+  color: #ffd700;
+  letter-spacing: 8px;
+  text-shadow: 2px 2px 0px #ff0000, -2px -2px 0px #ff0000, 0 0 30px #ffd700,
+    3px 3px 10px black;
+  margin-top: -15px;
+  transform: skewX(-12deg);
+}
+
+@keyframes koSlam {
+  0% {
+    transform: translate(-50%, -50%) scale(3.5);
+    opacity: 0;
+    filter: blur(8px);
+  }
+  60% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.15);
+    opacity: 1;
+  }
+}
+
+/* ⚡ Screen Lightning Flash */
+.flash-ko {
+  animation: whiteFlash 0.4s ease-out;
+  will-change: filter;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+@keyframes whiteFlash {
+  0% {
+    filter: brightness(2.9) contrast(1.6);
+    /* filter: brightness(3.5) contrast(2);*/
+  }
+  100% {
+    filter: brightness(1) contrast(1);
+  }
+}
+/* ========================================= */
+/* 🎴 ANIME SPECIAL MOVE CUT-IN CARD STYLING  */
+/* ========================================= */
+#move-cutin-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  bottom: 30px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  max-width: 95vw;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  z-index: 9;
+  pointer-events: none;
+}
+
+/* 🃏 Single Move Card */
+.move-cutin-card {
+  position: relative;
+  width: 100px;
+  height: 260px;
+  flex-shrink: 1;
+  border-radius: 2px;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 40, 0.5),
+    rgba(10, 0, 0, 0.9)
+  );
+  border: none;
+  box-shadow: none;
+  animation: animeCardCutIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: center center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.move-cutin-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none !important;
+}
+
+/* ⚡ Move Name Title Ribbon */
+.move-cutin-title {
+  position: absolute;
+  bottom: 8px;
+  width: 70%;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  font-family: Impact, sans-serif;
+  font-size: 10px;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 1.5px;
+  text-shadow: none;
+}
+
+/* 🎬 0.6s OP EASE-IN & EASE-OUT ANIMATION */
+@keyframes animeCardCutIn {
+  0% {
+    opacity: 0;
+    transform: scale(2.6) rotate(-8deg);
+  }
+  25% {
+    opacity: 1;
+    transform: scale(0.96) rotate(1deg);
+  }
+  50% {
+    transform: scale(1.04) rotate(0deg);
+  }
+  75% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18) translateY(-20px);
+  }
+}
+/* ========================================= */
+/* ⚡ ANIME COMBO BADGE (2x, 3x, 10x STYLING) */
+/* ========================================= */
+.move-card-badge {
+  position: absolute;
+  top: 60px;
+  right: 8px;
+  background: linear-gradient(135deg, #ff0033, #ffcc00);
+  color: #ffffff;
+  font-family: Impact, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 2px solid #ffffff;
+  box-shadow: 0 0 12px #ff0033, 0 0 6px #ffd700;
+  text-shadow: 2px 2px 3px #000000;
+  z-index: 10;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+/* 💥 Pop Animation jab naya hit judega */
+.pop-badge {
+  animation: badgePop 0.2s ease-out;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(1.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* ==========================================
+   ⚙️ RIGHT SIDE OPTION BUTTON & 80% MODAL PAGE
+      ========================================== */
+
+/* 1. Right Side Option Icon */
+
+.option-img-direct {
+  position: absolute;
+  top: 6px;
+  left: calc(50% - 150px);
+  width: 85px !important;
+  height: 85px !important;
+  z-index: 3100;
+  cursor: pointer;
+  object-fit: contain;
+  background: transparent !important;
+  border: none !important;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.9));
+  transition: transform 0.15s ease;
+  user-select: none;
+  touch-action: manipulation;
+}
+.option-img-direct:active {
+  transform: scale(0.92);
+}
+
+.options-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  /* height: var(--app-height, 100vh) !important;*/
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
+  backdrop-filter: none !important;
+}
+/* Keyboard open hone par modal upar shift hoga */
+.options-modal-content.keyboard-up {
+  transform: translateY(0);
+  transition: transform 0.2s ease-in-out;
+}
+.options-modal-content {
+  position: relative;
+  width: 80vw; /* 👈 Screen width ka exact 80% */
+  height: 80vh;
+  max-width: 880px;
+  max-height: 520px;
+  background-color: #111;
+  /* 👈 Aapka menu1 background */
+
+  border: 2px solid #ffd700;
+  border-radius: 16px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.95), 0 0 15px rgba(255, 215, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+#options-bg-poster {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  z-index: 1 !important;
+  pointer-events: none;
+}
+
+.options-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: #ff0033;
+  color: white;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 20;
+}
+
+.options-tabs-bar {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  z-index: 10 !important;
+  margin-bottom: 12px;
+  padding-right: 42px;
+}
+.option-tab-item {
+  flex: 1;
+
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  color: #fff;
+  font-family: Impact, sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.option-tab-item.active-option-tab {
+  background: linear-gradient(135deg, #ff0033, #b30024);
+  border-color: #ffd700;
+  box-shadow: 0 0 12px rgba(255, 0, 50, 0.8);
+}
+/* 📜 Moves & Info Text Overlay (Compact & Clean) */
+.options-text-overlay {
+  position: relative !important;
+  z-index: 10 !important;
+  flex: 1;
+  overflow-y: auto;
+  background: transparent !important;
+  /* 👈 Kaala dabba gayab */
+  border: none !important;
+  padding: 4px 6px;
+  box-sizing: border-box;
+}
+
+.options-text-overlay p {
+  color: #ff3333;
+
+  font-size: 16px !important;
+  font-weight: bolder;
+  line-height: 1.45;
+  margin: 3px 0;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 2px #ff3333, 0 0 5px #ff3333;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000, 0 0 1px #ff3344;
+}
+
+.options-text-overlay p b {
+  color: #ffb703;
+  /* 🟠 Orange text ke andar tight Orange light: */
+  text-shadow: 0 0 2px #ff9900, 0 0 5px #ff9900;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000, 0 0 1px #ffb703;
+}
+
+/*
+.options-tab-body {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+.tab-view-content {
+  width: 100% !important;
+  height: 100% !important;
+  display: none;
+  flex-direction: column !important;
+}
+.tab-view-content.active-tab-view {
+  display: flex !important;
+}
+
+.tab-img-wrap {
+  width: 100% !important;
+  height: 100% !important;
+  flex: 1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+}
+
+.tab-full-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 8px !important;
+}*/
+
+.online-search-bar {
+  position: relative !important;
+  z-index: 10 !important;
+  display: flex;
+  gap: 8px;
+
+  margin-bottom: 10px;
+  width: 100%;
+  padding: 4px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.online-search-bar input {
+  flex: 1;
+  height: 38px;
+
+  padding: 2px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1.5px solid #00ffff;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 16px !important;
+  outline: none;
+  touch-action: auto !important;
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+.search-submit-btn {
+  padding: 2px 12px;
+  height: 38px;
+
+  background: #00ffff;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-family: Impact, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+/* Room Cards 
+.online-room-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+}
+.room-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 12px;
+}
+.room-action-btn {
+  background: #32cd32;
+  color: #000;
+  border: none;
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.room-action-btn.create-btn {
+  background: #ffd700;
+}
+
+.moves-scroll-box,
+.info-box {
+  overflow-y: auto;
+  height: 100%;
+  color: #fff;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.move-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 10px;
+  border-radius: 6px;
+  border-left: 3px solid #ff0033;
+}*/
+.fighter-badge {
+  position: absolute;
+  z-index: 30;
+  pointer-events: none;
+  white-space: nowrap;
+  font-family: Impact, Arial, sans-serif;
+  letter-spacing: 1px;
+  transform: translateX(-50%) !important; /* 👈 Center lock */
+}
+/* ==========================================
+   🌟 CENTER BATTLE READY START BUTTON
+      ========================================== */
+#arenaStartOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3500;
+  pointer-events: auto;
+}
+.arena-start-logo {
+  width: 175px; /* 👈 Ekdum perfect badi size (not small) */
+  height: auto;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  /* 🔥 Anime Zoro Green & Gold Glow (Bina kisi background dabbe ke) */
+  filter: drop-shadow(0 0 15px rgba(0, 255, 128, 0.85))
+    drop-shadow(0 0 25px rgba(25, 25, 0, 0.6));
+  animation: zoroPulse 1.4s infinite alternate ease-in-out;
+  transition: transform 0.1s ease;
+}
+.arena-start-logo:active {
+  transform: scale(0.9); /* Dabane par halka sa dabega */
+}
+
+@keyframes zoroPulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 12px rgba(0, 255, 128, 0.8))
+      drop-shadow(0 0 20px rgba(25, 21, 0, 0.5));
+  }
+  100% {
+    transform: scale(1.12); /* Thoda sa badhega aur chamkega */
+    filter: drop-shadow(0 0 24px rgba(0, 255, 128, 1))
+      drop-shadow(0 0 35px rgba(55, 25, 0, 0));
+  }
+}
+#online-search-input {
+  scroll-margin: 0 !important;
+  overscroll-behavior: none !important;
+}
+
+/*
+.arena-center-start-btn:active {
+  transform: scale(0.92);
+}
+
+.arena-start-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  object-fit: cover;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+
+.arena-start-title {
+  font-family: Impact, "Arial Black", sans-serif;
+  font-size: 30px;
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-shadow: 2px 2px 0px #b35900, -2px -2px 0px #b35900, 2px -2px 0px #b35900,
+    -2px 2px 0px #b35900, 0 0 12px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes arenaBtnPulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 12px gold);
+  }
+  100% {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 22px #ff6600);
+  }
+}*/
+.mugen-mic-matrix-container {
+  position: absolute;
+  top: 120px !important; /* 👈 Main option tab logo/start button ke theek niche coordinates */
+  /*display: flex;
+  flex-direction: column;*/
+  display: grid !important;
+  grid-template-columns: repeat(
+    2,
+    34px
+  ) !important; /* 👈 4 aur 4 ke 2 Columns (Total 8 Mics) */
+  grid-auto-rows: 34px !important;
+
+  gap: 8px;
+  z-index: 3200 !important;
+  pointer-events: auto !important;
+}
+
+.left-side-matrix {
+  left: 31% !important; /* Left panel positioning alignment */
+}
+
+.right-side-matrix {
+  right: 31% !important; /* Right panel positioning alignment */
+}
+
+.mugen-live-mic-node {
+  position: relative;
+  width: 32px !important;
+  height: 32px !important;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Mic Active ON Styling */
+.active-mic-on {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.4),
+    rgba(0, 150, 255, 0.2)
+  ) !important;
+  border: 1.5px solid #00ffff !important;
+  filter: drop-shadow(0 0 4px #00ffff);
+}
+.active-mic-on:active {
+  transform: scale(0.9);
+}
+
+/* Mic Muted OFF Styling */
+.muted-mic-off {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 51, 102, 0.4),
+    rgba(150, 0, 50, 0.2)
+  ) !important;
+  border: 1.5px solid #ff3366 !important;
+  filter: drop-shadow(0 0 4px #ff3366);
+}
+.muted-mic-off:active {
+  transform: scale(0.9);
+}
+
+/* Scroller thumb configuration for high player density list */
+#mugen-online-scroller-panel::-webkit-scrollbar {
+  width: 4px;
+}
+#mugen-online-scroller-panel::-webkit-scrollbar-thumb {
+  background: #ff1a40;
+  border-radius: 10px;
+}
+/* ==========================================================
+   🎮 ALL-DEVICE PRO HACK (Samsung J7 se iPhone / Vivo tak)
+      ========================================================== */
+
+/* 1. Health Bars: Kisi bhi phone par screen se bahar nahi jayegi */
+.health-box,
+.p1-health,
+.p2-health {
+  max-width: 42vw !important;
+}
+
+/* 2. Select Screen START Button: Har screen par TOP par perfectly dikhega */
+.start-btn-wrap {
+  position: fixed !important;
+  top: 10px !important;
+  left: 65% !important;
+  transform: translateX(-50%) !important;
+  z-index: 3100 !important;
+}
+
+/* 3. Team A aur Team B Panels: Chote phones par text cut nahi hoga */
+.team-panel {
+  min-width: 130px !important;
+}
+
+/* 4. Choti screen height wale phone (<= 380px jaise J7 / SE) par controls safe distance */
+@media (max-height: 380px) {
+  .action-btns {
+    bottom: 25px !important;
+    gap: 6px !important;
+  }
+  #joystick-container {
+    bottom: 25px !important;
+  }
+  .cards-row {
+    padding: 2px 4% !important;
+  }
+  .roster-card {
+    height: 75px !important;
+  }
+}
